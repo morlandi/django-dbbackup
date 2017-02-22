@@ -32,6 +32,7 @@ class PgDumpConnector(BaseCommandDBConnector):
             cmd += ' --exclude-table={}'.format(table)
         if self.drop:
             cmd += ' --clean'
+        cmd += ' --if-exists'
         cmd = '{} {} {}'.format(self.dump_prefix, cmd, self.dump_suffix)
         stdout, stderr = self.run_command(cmd, env=self.dump_env)
         return stdout
